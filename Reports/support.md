@@ -1,5 +1,7 @@
 Hack the box :Support
 
+nmap scan
+```
 53/tcp   open  domain        Simple DNS Plus
 88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-07-31 04:20:45Z)
 135/tcp  open  msrpc         Microsoft Windows RPC
@@ -11,7 +13,7 @@ Hack the box :Support
 636/tcp  open  tcpwrapped
 3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: support.htb0., Site: Default-First-Site-Name)
 3269/tcp open  tcpwrapped
-
+```
 filltering for easy analyze
 
 smb

