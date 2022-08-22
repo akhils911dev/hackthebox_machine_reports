@@ -62,10 +62,9 @@ Sql injection filter bypass techniques
 
 Reference 1 : [https://portswigger.net/web-security/sql-injection/union-attacks](https://portswigger.net/web-security/sql-injection/union-attacks)
 
-Reference 2: [https://null-byte.wonderhowto.com/how-to/sql-injection-101-avoid-detection-bypass-defenses-0184918/](https://null-byte.wonderhowto.com/how-to/sql-injection-101-avoid-detection-bypass-defenses-0184918/
-)
-Reference 3: [https://programmer.ink/think/sql-injection-bypass.html](https://programmer.ink/think/sql-injection-bypass.html
-)
+Reference 2: [https://null-byte.wonderhowto.com/how-to/sql-injection-101-avoid-detection-bypass-defenses-0184918/](https://null-byte.wonderhowto.com/how-to/sql-injection-101-avoid-detection-bypass-defenses-0184918/)
+
+Reference 3: [https://programmer.ink/think/sql-injection-bypass.html](https://programmer.ink/think/sql-injection-bypass.html)
 
 Sql union based injection
 
