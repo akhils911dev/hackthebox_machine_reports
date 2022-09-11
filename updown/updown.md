@@ -4,7 +4,7 @@ Initial Nmap Scan
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
 ```
-Accessing siteisup.htb @80
+Accessing siteisup.htb @ port 80
 
 Exploring Local Git dir
 
