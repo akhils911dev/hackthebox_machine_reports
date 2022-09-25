@@ -8,11 +8,11 @@ Endpoints
 We identified Nosql injection vulnerability 
 In username parameter of login form in shoppy.htb
 
-About Nosql injection in Nodejs
+**About Nosql injection in Nodejs**
 
 One thing many users are surprised about, is that Mongo supports JavaScript evaluation when a JS expression is placed into a $where clause or passed into a mapReduce or group function. So anywhere unfiltered input is passed to one of these clauses, we may find JavaScript injection.
 
-JavaScript Injection Example
+**JavaScript Injection Example**
 
 The app has a JavaScript injection in the querystring of the user lookup page. The (vulnerable) lookup code looks like this:
 
@@ -34,14 +34,11 @@ In this case, our goal is to find all valid users, so we'd like to pass in somet
 
 Reference no 1 [https://nullsweep.com/a-nosql-injection-primer-with-mongo/](https://nullsweep.com/a-nosql-injection-primer-with-mongo/)
 
-Reference no 2
-
-**Javascript Evaluation Query in mongodb**
+Reference no 2 **Javascript Evaluation Query in mongodb**   
 
 [https://www.mongodb.com/docs/manual/reference/operator/query-evaluation/](https://www.mongodb.com/docs/manual/reference/operator/query-evaluation/)
 
-
-Debuging ShoppyApp
+**Debuging ShoppyApp**
 
 Runing shoppyapp localy and config the mongodb 
 
@@ -71,12 +68,12 @@ app.post('/login', async (req, res) => {
     }
 });
 ```
-**Payload**
+**Payload**   
 {"username":"admin'||'1=1","password":""}
 
 Set a breakpoint in line 86 and inject the payload the query will look like this
 ```javascript
 $where: 'this.username === 'admin'||' 1=1' && this.password === 'd41d8cd98f00b204e9800998ecf8427e''
 ```
-**Report**
+**Report**   
 admin OR 1=1 AND passwod in this query "1=1" will evaluates to true and return 1. If we get 0 it will redirect to Wrongcreds if we get 1 it will redirect to /admin endpoint from that point we successfully bypass the auth 
