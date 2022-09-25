@@ -1,8 +1,8 @@
 Beyond Auth bypass
 
-Shoppy come with MEAN stack {Mongodb,Express,Angular,Nodejs}
-
-Endpoints
+Shoppy come with MEAN stack {Mongodb,Express,Angular,Nodejs}  
+ 
+Endpoints   
 /login
 
 We identified Nosql injection vulnerability 
