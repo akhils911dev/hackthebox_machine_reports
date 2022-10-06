@@ -44,7 +44,6 @@ ACL token:bb03b43b-1d81-d62b-24b5-39540ee469b5
 Making exploit
 
 Referance API doc
-
 [https://www.consul.io/api-docs/agent/service](https://www.consul.io/api-docs/agent/service)   
 Referance about default port [https://stackoverflow.com/questions/30684262/different-ports-used-by-consul](https://stackoverflow.com/questions/30684262/different-ports-used-by-consul)   
 ```bash
