@@ -6,9 +6,9 @@ PORT 80 running a hugo site which a static site generater framework
 PORT 3000 running Grafana. A grafical monitering tool
 PORT 3306 running mysql
 
-unauthenticated LFI vuln in grafana version 3.2.0
-Referance [https://www.exploit-db.com/exploits/50581]( https://www.exploit-db.com/exploits/50581)
-More about LFI [https://j0vsec.com/post/cve-2021-43798/](https://j0vsec.com/post/cve-2021-43798/)
+unauthenticated LFI vuln in grafana version 3.2.0   
+Referance [https://www.exploit-db.com/exploits/50581]( https://www.exploit-db.com/exploits/50581)   
+More about LFI [https://j0vsec.com/post/cve-2021-43798/](https://j0vsec.com/post/cve-2021-43798/)   
 
 Exploit LFI using a python script 
 Default config of grafana is using sqlite3 and store the file on /var/lib/grafana/grafana.db

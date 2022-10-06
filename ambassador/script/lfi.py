@@ -1,17 +1,3 @@
-# Exploit Title: Grafana 8.3.0 - Directory Traversal and Arbitrary File Read
-# Date: 08/12/2021
-# Exploit Author: s1gh
-# Vendor Homepage: https://grafana.com/
-# Vulnerability Details: https://github.com/grafana/grafana/security/advisories/GHSA-8pjx-jj86-j47p
-# Version: V8.0.0-beta1 through V8.3.0
-# Description: Grafana versions 8.0.0-beta1 through 8.3.0 is vulnerable to directory traversal, allowing access to local files.
-# CVE: CVE-2021-43798
-# Tested on: Debian 10
-# References: https://github.com/grafana/grafana/security/advisories/GHSA-8pjx-jj86-j47p47p
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import requests
 import argparse
 import sys
