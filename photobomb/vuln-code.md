@@ -1,5 +1,5 @@
 Atfer pwning the box i take this code from photobomb. This is the code
-to vulnerable to Blind RCE
+to vulnerable to Blind RCE parameter **filetype**
 
 ```ruby
   filename = photo.sub('.jpg', '') + '_' + dimensions + '.' + filetype
