@@ -1,5 +1,5 @@
-# Usage: python3 rshell.py LocalIP local_port 
-# setup : run a netcat listener
+# Usage: python3 rshell.py LocalIP localPort
+# setup : run a netcat listener on localPort
 # waraning: before you run the script make sure your host file contain the target hostname
 # Author : @akhil0x8
 
