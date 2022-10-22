@@ -1,2 +1,1 @@
-#About repo   
-This repo is used to store CTFs walkthroughs and my personal findings
+# This repo is used to store CTFs walkthroughs and my Personal findings
