@@ -15,7 +15,7 @@ class Upload:
         # File upload
 		self.Upload()
 
-# Upload request for file upload
+    # Upload request for file upload
 	def Upload(self,timeout=5):
 		value = {"check":"Check"}
 		try:
