@@ -1,6 +1,6 @@
 # Note: This script is used to getting a reverse-shell from target 
 # Usage: python3 rshell.py ListenIP ListenPort
-# warning: Before you run the script make sure your hostfile contain target hostname. That is "http://hat-valley.htb/"
+# warning: Before you run the script make sure your hostfile contain target hostname. That is "hat-valley.htb"
 # Author : @akhil0x8
 
 import requests
