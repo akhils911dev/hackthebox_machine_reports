@@ -74,9 +74,8 @@ Api documentation
 patached.html
 
 Reading the documentation i found a file read in all-leave endpoint
-
+http://hat-valley.htb/api/all-leave
 Abusing "awk"   
-http://hat-valley.htb/api/all-leave   
 This endpoint is used to fetch user leave requests and the endpoint need user token to fetch the details
 the mechanisam behind the fetching user details it use awk command (linux command) for getting data from leave requests stored file that is a csv file on target. server will extract username from user token and getting that particuler user data from csv file using awk. we need to foreging the cookie for injecting filename in username feild of the token
 
