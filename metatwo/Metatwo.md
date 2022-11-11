@@ -34,10 +34,10 @@ metapress.htb
 #### HTTP
 
 metapress.htb
-![](/Metatwo/img/metapress.png)
+![](/metatwo/img/metapress.png)
 
 Source code
-![](/Metatwo/img/metapress-source-code.png)
+![](/metatwo/img/metapress-source-code.png)
 
 Checking the source code reveals it is a WordPress site because of the wp-content directory, which is the default WP content directory of WordPress.
 
