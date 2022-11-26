@@ -34,7 +34,7 @@ metapress.htb
 #### HTTP
 
 metapress.htb
-![](/metatwo/img/metapress.png)
+loading image
 
 Source code
 ![](/metatwo/img/metapress-source-code.png)
